@@ -1,65 +1,102 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined
-} from '@ant-design/icons';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-const TitleBar = () => {
+/**
+ * @description 自定义标题栏
+ * 
+ * @param {array} config 定义左侧菜单栏
+ * @example
+ * var menu = [subMenu1, subMenu2, ...]
+ * var subMenu = {
+ *  key: "sub1",
+ *  title: "副标题1",
+ *  icon: <UserOutlined />,
+ *  item: [Item1, Item2, ...],
+ * } 
+ * var Item = {
+ *  key: "1",  //key对应content参数中组件Content的位置
+ *  text: "option1",
+ *  content: Component,
+ * }
+ * 
+ * @param {string} defaultOpenKey 定义默认打开的菜单
+ * @example
+ * var defaultOpenKey = "sub1"
+ * 
+ * @param {string} defaultSelectedKey 定义默认选择的菜单栏
+ * @example 
+ * var defaultSelectKey = "1"
+ */
+const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    config.forEach((subMenu) => {
+      subMenu.item.forEach((item) => {
+        if (item.key === defaultSelectedKey) {
+          setContent(item.content);
+        }
+      });
+    });
+  }, [defaultSelectedKey, config]);
+  /**
+   * @description 改变内容
+   * @param {Component} component 
+   */
+  const handleChangeContent = (component) => {
+    setContent(component);
+  };
+
   return (
-    <div>
-      <Layout>
-        <Header className="header">
-          <div className="logo" />
-        </Header>
-        <Layout>
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-            >
-              <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-                <Menu.Item key="1">option1</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
-                <Menu.Item key="3">option3</Menu.Item>
-                <Menu.Item key="4">option4</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-                <Menu.Item key="5">option5</Menu.Item>
-                <Menu.Item key="6">option6</Menu.Item>
-                <Menu.Item key="7">option7</Menu.Item>
-                <Menu.Item key="8">option8</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-                <Menu.Item key="9">option9</Menu.Item>
-                <Menu.Item key="10">option10</Menu.Item>
-                <Menu.Item key="11">option11</Menu.Item>
-                <Menu.Item key="12">option12</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </Sider>
-          <Layout style={{ padding: '0 24px 24px' }}>
-            <Content
-              className="site-layout-background"
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
-              Content
-            </Content>
-          </Layout>
+    <Layout className="TitleBar-container">
+      <Header className="TitleBar-header">
+        <div className="TitleBar-logo" />
+      </Header>
+      <Layout className="TitleBar-body">
+        <Sider width={200} className="TitleBar-sider">
+          <Menu
+            className="TitleBar-menu"
+            mode="inline"
+            defaultOpenKeys={[defaultOpenKey]}
+            defaultSelectedKeys={[defaultSelectedKey]}
+          >
+            {config ? (
+              config.map((subMenu) => {
+                return (
+                  <SubMenu 
+                    key={subMenu.key}
+                    icon={subMenu.icon}
+                    title={subMenu.title}
+                  >
+                    {subMenu.item ? (
+                      subMenu.item.map((item) => {
+                        return (
+                          <Menu.Item
+                            key={item.key}
+                            onClick={() => handleChangeContent(item.content)}
+                          >
+                            {item.text}
+                          </Menu.Item>
+                        );
+                      })
+                    ) : null}
+                  </SubMenu>
+                );
+              })
+            ) : null}
+          </Menu>
+        </Sider>
+        <Layout className="TitleBar-content-container">
+          <Content className="TitleBar-content">
+            {content}
+          </Content>
         </Layout>
       </Layout>
-    </div>
+    </Layout>
   );
 }
 
