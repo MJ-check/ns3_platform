@@ -1,8 +1,11 @@
 import React from "react";
+import TitleBar from "../../component/TitleBar/TitleBar";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <TitleBar />
+    </div>
   );
 }
 

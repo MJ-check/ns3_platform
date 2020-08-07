@@ -11,5 +11,5 @@ export {
   Register,
   Class,
   Lab,
-  Home
+  Home,
 };
