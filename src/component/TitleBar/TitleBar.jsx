@@ -8,7 +8,6 @@ const { Header, Content, Sider } = Layout;
 
 /**
  * @description 自定义标题栏
- * 
  * @param {array} config 定义左侧菜单栏
  * @example
  * var menu = [subMenu1, subMenu2, ...]
@@ -23,16 +22,25 @@ const { Header, Content, Sider } = Layout;
  *  text: "option1",
  *  content: Component,
  * }
- * 
  * @param {string} defaultOpenKey 定义默认打开的菜单
  * @example
  * var defaultOpenKey = "sub1"
- * 
  * @param {string} defaultSelectedKey 定义默认选择的菜单栏
  * @example 
  * var defaultSelectKey = "1"
  */
 const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
+  // choseKey 是存储在 sessionStorage 里的侧边栏状态，用于页面刷新后侧边栏保持原有状态
+  const [openKey, setOpenKey] = useState(
+    window.sessionStorage.getItem("choseKey") ?
+    JSON.parse(window.sessionStorage.getItem("choseKey")).defaultOpenKey :
+    defaultOpenKey
+  );
+  const [selectedKey, setSelectedKey] = useState(
+    window.sessionStorage.getItem("choseKey") ?
+    JSON.parse(window.sessionStorage.getItem("choseKey")).defaultSelectedKey :
+    defaultSelectedKey
+  );
   const [content, setContent] = useState(null);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -40,20 +48,29 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
   useEffect(() => {
     config.forEach((subMenu) => {
       subMenu.item.forEach((item) => {
-        if (item.key === defaultSelectedKey) {
+        if (item.key === selectedKey) {
           setContent(item.content);
         }
       });
     });
-  }, [defaultSelectedKey, config]);
+  }, [config, selectedKey]);
 
 
   /**
-   * @description 改变内容
+   * @description 改变显示的内容并存储选择的键码（key）
+   * @param {Object} key 
+   * @example
+   *  {
+   *    defaultOpenKey: "sub1",
+   *    defaultSelectedKey: "1",
+   *  }
    * @param {Component} component 
    */
-  const handleChangeContent = (component) => {
+  const handleChangeContent = (key, component) => {
+    setOpenKey(key.defaultOpenKey);
+    setSelectedKey(key.defaultSelectedKey);
     setContent(component);
+    window.sessionStorage.setItem("choseKey", JSON.stringify(key));
   };
 
 
@@ -80,8 +97,8 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
           className="TitleBar-menu"
           mode="inline"
           theme="dark"
-          defaultOpenKeys={[defaultOpenKey]}
-          defaultSelectedKeys={[defaultSelectedKey]}
+          defaultOpenKeys={[openKey]}
+          defaultSelectedKeys={[selectedKey]}
         >
           {config ? (
             config.map((subMenu) => {
@@ -96,7 +113,15 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
                       return (
                         <Menu.Item
                           key={item.key}
-                          onClick={() => handleChangeContent(item.content)}
+                          onClick={() => {
+                              handleChangeContent(
+                                {
+                                  defaultOpenKey: subMenu.key, 
+                                  defaultSelectedKey: item.key,
+                                },
+                                item.content
+                              );
+                            }}
                         >
                           {item.text}
                         </Menu.Item>
