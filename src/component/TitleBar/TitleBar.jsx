@@ -5,6 +5,7 @@ import { Layout, Menu } from 'antd';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
+
 /**
  * @description 自定义标题栏
  * 
@@ -33,6 +34,8 @@ const { Header, Content, Sider } = Layout;
  */
 const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
   const [content, setContent] = useState(null);
+  const [collapsed, setCollapsed] = useState(false);
+
 
   useEffect(() => {
     config.forEach((subMenu) => {
@@ -43,6 +46,8 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
       });
     });
   }, [defaultSelectedKey, config]);
+
+
   /**
    * @description 改变内容
    * @param {Component} component 
@@ -51,53 +56,71 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
     setContent(component);
   };
 
+
+  /**
+   * @description 侧边栏收缩响应
+   * @param {boolean} state 
+   */
+  const handleCollapse = (state) => {
+    setCollapsed(state);
+  };
+
+
   return (
     <Layout className="TitleBar-container">
-      <Header className="TitleBar-header">
+      <Sider 
+        className="TitleBar-sider"
+        width={200}
+        collapsible
+        collapsed={collapsed}
+        onCollapse={handleCollapse}
+      >
         <div className="TitleBar-logo" />
-      </Header>
+        <Menu
+          className="TitleBar-menu"
+          mode="inline"
+          theme="dark"
+          defaultOpenKeys={[defaultOpenKey]}
+          defaultSelectedKeys={[defaultSelectedKey]}
+        >
+          {config ? (
+            config.map((subMenu) => {
+              return (
+                <SubMenu 
+                  key={subMenu.key}
+                  icon={subMenu.icon}
+                  title={subMenu.title}
+                >
+                  {subMenu.item ? (
+                    subMenu.item.map((item) => {
+                      return (
+                        <Menu.Item
+                          key={item.key}
+                          onClick={() => handleChangeContent(item.content)}
+                        >
+                          {item.text}
+                        </Menu.Item>
+                      );
+                    })
+                  ) : null}
+                </SubMenu>
+              );
+            })
+          ) : null}
+        </Menu>
+      </Sider>
       <Layout className="TitleBar-body">
-        <Sider width={200} className="TitleBar-sider">
-          <Menu
-            className="TitleBar-menu"
-            mode="inline"
-            defaultOpenKeys={[defaultOpenKey]}
-            defaultSelectedKeys={[defaultSelectedKey]}
-          >
-            {config ? (
-              config.map((subMenu) => {
-                return (
-                  <SubMenu 
-                    key={subMenu.key}
-                    icon={subMenu.icon}
-                    title={subMenu.title}
-                  >
-                    {subMenu.item ? (
-                      subMenu.item.map((item) => {
-                        return (
-                          <Menu.Item
-                            key={item.key}
-                            onClick={() => handleChangeContent(item.content)}
-                          >
-                            {item.text}
-                          </Menu.Item>
-                        );
-                      })
-                    ) : null}
-                  </SubMenu>
-                );
-              })
-            ) : null}
-          </Menu>
-        </Sider>
-        <Layout className="TitleBar-content-container">
-          <Content className="TitleBar-content">
-            {content}
-          </Content>
-        </Layout>
+        <Header 
+          className="TitleBar-header"
+          style={{ padding: 0, background: "#fff" }}
+        />
+        <Content className="TitleBar-content">
+          {content}
+        </Content>
       </Layout>
     </Layout>
   );
 }
+
 
 export default TitleBar;

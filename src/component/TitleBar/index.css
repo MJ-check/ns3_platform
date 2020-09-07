@@ -3,31 +3,21 @@
   width: 100%;
   height: 100%;
 }
-.TitleBar-logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
-  float: left;
-}
-.TitleBar-body {
-  width: 100%;
+.TitleBar-sider {
   height: 100%;
 }
-.TitleBar-sider {
-  background: #fff;
+.TitleBar-logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
 }
 .TitleBar-menu {
-  height: 100%;
   border-right: 0;
-}
-.TitleBar-content-container {
-  padding: 24px;
 }
 .TitleBar-content {
   background-color: #fff;
   padding: 0;
-  margin: 0;
-  min-height: 280;
+  margin: 24px;
+  min-height: 280px;
   overflow: hidden;
 }
