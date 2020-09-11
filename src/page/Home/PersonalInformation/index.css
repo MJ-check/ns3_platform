@@ -1,4 +1,56 @@
 .PI-container {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+}
+.PI-loading {
+  width: 100%;
+  height: 100%;
+}
+.PI-content-container {
+  margin: 4% 7% 8% 7%;
+}
+.PI-user-icon {
+  opacity: 0.5;
+  width: 80px;
+  height: 80px;
+}
+
+/*--- PIPresentation ---*/
+.PIPresentation-msg-box {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-size: larger;
+}
+.PIPresentation-msg-item {
+  height: 26px;
+  margin-bottom: 40px;
+  padding-left: 5px;
+}
+.PIPresentation-msg-item-title {
+  width: 130px;
+}
+.PIPresentation-button {
+  margin-left: 0px;
+}
+
+/*--- PIModification ---*/
+.PIModification-input-box {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-size: larger;
+}
+.PIModification-input-item {
+  height: 26px;
+  margin-bottom: 40px;
+  padding-left: 5px;
+}
+.PIModification-input-item-title {
+  width: 130px;
+}
+.PIModification-button {
+  margin-left: 0px;
+}
+.PIModification-button Button {
+  margin-right: 35px;
 }
