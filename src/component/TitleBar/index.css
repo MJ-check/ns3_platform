@@ -1,0 +1,35 @@
+.TitleBar-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.TitleBar-sider {
+  height: 100%;
+}
+.TitleBar-logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+.TitleBar-menu {
+  border-right: 0;
+}
+.TitleBar-content-container {
+  padding: 0;
+  margin: 0px 24px;
+  min-height: 280px;
+}
+.TitleBar-content-text {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  padding-bottom: 2px;
+  letter-spacing: 5px;
+}
+.TitleBar-content {
+  width: 100%;
+  height: calc(100% - 64px);
+  margin-bottom: 24px;
+  background-color: #fff;
+  overflow: hidden;
+}
