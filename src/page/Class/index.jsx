@@ -1,5 +1,9 @@
-import Class from "./Class";
+import AllClasses from "./AllClasses/AllClasses";
+import JoinedClasses from "./JoinedClasses/JoinedClasses";
+import CreatedClasses from "./CreatedClasses/CreatedClasses";
 
 export {
-  Class
+  AllClasses,
+  JoinedClasses,
+  CreatedClasses,
 };

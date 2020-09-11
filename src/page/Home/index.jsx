@@ -1,5 +1,7 @@
-import Home from "./Home";
+import PersonalInformation from "./PersonalInformation/PersonalInformation";
+import MyNews from "./MyNews/MyNews";
 
 export {
-  Home
+  PersonalInformation,
+  MyNews,
 };

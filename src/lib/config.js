@@ -1,34 +1,53 @@
 import React from "react";
+import {
+  UserOutlined,
+  TeamOutlined,
+  DesktopOutlined,
+} from "@ant-design/icons";
+import {
+  AllClasses,
+  JoinedClasses,
+  CreatedClasses,
+} from "../page/Class/index"
+import { 
+  PersonalInformation,
+  MyNews,
+} from "../page/Home/index"
+import {
+  MyExperiment,
+  ManageExperiment,
+} from "../page/Lab/index"
 
+/**
+ * @description 学生页面配置
+ */
 const StudentMenu = [
   {
     key: "sub1",
-    title: "副标题1",
-    icon: null,
+    title: "班级",
+    icon: <TeamOutlined />,
     item: [
-      {key: "1", text: "option1", content: <div>content1</div>},
-      {key: "2", text: "option2", content: <div>content2</div>},
-      {key: "3", text: "option3", content: <div>content3</div>},
+      {key: "1", text: "所有课堂", content: <AllClasses />},
+      {key: "2", text: "加入的课堂", content: <JoinedClasses />},
+      {key: "3", text: "创建的课堂", content: <CreatedClasses />},
     ],
   },
   {
     key: "sub2",
-    title: "副标题2",
-    icon: null,
+    title: "实验",
+    icon: <DesktopOutlined />,
     item: [
-      {key: "4", text: "option4", content: <div>content4</div>},
-      {key: "5", text: "option5", content: <div>content5</div>},
-      {key: "6", text: "option6", content: <div>content6</div>},
+      {key: "4", text: "我的实验", content: <MyExperiment />},
+      {key: "5", text: "管理实验", content: <ManageExperiment />},
     ],
   },
   {
     key: "sub3",
-    title: "副标题3",
-    icon: null,
+    title: "我的",
+    icon: <UserOutlined />,
     item: [
-      {key: "7", text: "option7", content: <div>content7</div>},
-      {key: "8", text: "option8", content: <div>content8</div>},
-      {key: "9", text: "option9", content: <div>content9</div>},
+      {key: "6", text: "个人资料", content: <PersonalInformation />},
+      {key: "7", text: "我的消息", content: <MyNews />},
     ],
   },
 ];
@@ -36,6 +55,7 @@ const StudentMenu = [
 const TeacherMenu = [];
 
 const AdminMenu = [];
+
 
 /**
  * @description 根据角色选择标题栏的配置
@@ -53,6 +73,7 @@ function getTitleConfig(character) {
       return null;
   };
 }
+
 
 export { 
   getTitleConfig

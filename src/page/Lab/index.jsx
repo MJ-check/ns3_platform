@@ -1,5 +1,7 @@
-import Lab from "./Lab";
+import MyExperiment from "./MyExperiment/MyExperiment";
+import ManageExperiment from "./ManageExperiment/ManageExperiment";
 
 export {
-  Lab
+  MyExperiment,
+  ManageExperiment,
 };

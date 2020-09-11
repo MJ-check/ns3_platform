@@ -14,10 +14,22 @@
 .TitleBar-menu {
   border-right: 0;
 }
-.TitleBar-content {
-  background-color: #fff;
+.TitleBar-content-container {
   padding: 0;
-  margin: 24px;
+  margin: 0px 24px;
   min-height: 280px;
+}
+.TitleBar-content-text {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  padding-bottom: 2px;
+  letter-spacing: 5px;
+}
+.TitleBar-content {
+  width: 100%;
+  height: calc(100% - 64px);
+  margin-bottom: 24px;
+  background-color: #fff;
   overflow: hidden;
 }

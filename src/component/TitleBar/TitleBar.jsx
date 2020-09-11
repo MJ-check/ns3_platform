@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import "../../App.css";
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 const { SubMenu } = Menu;
@@ -43,6 +44,7 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
   );
   const [content, setContent] = useState(null);
   const [collapsed, setCollapsed] = useState(false);
+  const [titleText, setTitleText] = useState(null)
 
 
   useEffect(() => {
@@ -50,6 +52,7 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
       subMenu.item.forEach((item) => {
         if (item.key === selectedKey) {
           setContent(item.content);
+          setTitleText(item.text);
         }
       });
     });
@@ -65,11 +68,15 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
    *    defaultSelectedKey: "1",
    *  }
    * @param {Component} component 
+   * @param {string} text
+   * @example
+   *  "option1"
    */
-  const handleChangeContent = (key, component) => {
+  const handleChangeContent = (key, component, text) => {
     setOpenKey(key.defaultOpenKey);
     setSelectedKey(key.defaultSelectedKey);
     setContent(component);
+    setTitleText(text)
     window.sessionStorage.setItem("choseKey", JSON.stringify(key));
   };
 
@@ -119,7 +126,8 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
                                   defaultOpenKey: subMenu.key, 
                                   defaultSelectedKey: item.key,
                                 },
-                                item.content
+                                item.content,
+                                item.text
                               );
                             }}
                         >
@@ -139,8 +147,13 @@ const TitleBar = ({ config, defaultOpenKey, defaultSelectedKey }) => {
           className="TitleBar-header"
           style={{ padding: 0, background: "#fff" }}
         />
-        <Content className="TitleBar-content">
-          {content}
+        <Content className="TitleBar-content-container">
+          <div className="TitleBar-content-text flex-column-center-start">
+            {titleText}
+          </div>
+          <div className="TitleBar-content">
+            {content}
+          </div>
         </Content>
       </Layout>
     </Layout>
