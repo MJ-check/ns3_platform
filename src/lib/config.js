@@ -24,7 +24,7 @@ import {
 const StudentMenu = [
   {
     key: "sub1",
-    title: "班级",
+    title: "课堂",
     icon: <TeamOutlined />,
     item: [
       {key: "1", text: "所有课堂", content: <AllClasses />},

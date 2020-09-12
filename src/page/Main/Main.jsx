@@ -1,5 +1,5 @@
 import React from "react";
-import TitleBar from "../../component/TitleBar/TitleBar";
+import { TitleBar } from "../../component/index";
 import { getTitleConfig } from "../../lib/config";
 
 const Main = () => {

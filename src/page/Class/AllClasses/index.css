@@ -1,0 +1,29 @@
+.AC-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.AC-search-box {
+  width: 100%;
+  height: 70px;
+}
+.AC-search-text {
+  font-size: larger;
+  margin-right: 10px;
+}
+.AC-search-input {
+  width: 350px;
+  margin-right: 20px;
+}
+.AC-list-box {
+  width: calc(100% - 40px);
+  margin: 0px 20px 15px 20px;
+  height: calc(100% - 85px);
+}
+
+/*--- actionComponent ---*/
+.AC-list-button {
+  padding: 0px;
+  margin-right: 30px;
+}

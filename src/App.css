@@ -16,3 +16,15 @@
   justify-content: flex-start;
   align-items: center;
 }
+.flex-row-end-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.flex-row-start-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
