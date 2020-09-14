@@ -4,9 +4,20 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.CC-search-box {
+.CC-option-box {
   width: 100%;
   height: 70px;
+}
+.CC-create-class {
+  height: 100%;
+  margin-left: 20px;
+}
+.CC-create-class-button {
+  height: 40px;
+  padding: 6.4px 15px;
+}
+.CC-search-box {
+  height: 100%;
 }
 .CC-search-text {
   font-size: larger;

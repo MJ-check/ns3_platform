@@ -46,17 +46,27 @@ const CreatedClasses = () => {
 
   return (
     <div className="CC-container">
-      <div className="CC-search-box flex-row-end-center">
-        <div className="CC-search-text">
-          搜索课堂 :
+      <div className="CC-option-box flex-row-between-center">
+        <div className="CC-create-class flex-column-center-center">
+          <Button 
+            className="CC-create-class-button"
+            type="primary"
+          >
+            创建课堂
+          </Button>
         </div>
-        <Search
-          className="CC-search-input"
-          placeholder="课堂ID"
-          enterButton="Search"
-          size="large"
-          onSearch={value => handleSearch(value)}
-        />
+        <div className="CC-search-box flex-row-end-center">
+          <div className="CC-search-text">
+            搜索课堂 :
+          </div>
+          <Search
+            className="CC-search-input"
+            placeholder="课堂ID"
+            enterButton="Search"
+            size="large"
+            onSearch={value => handleSearch(value)}
+          />
+        </div>
       </div>
       <div className="CC-list-box">  
         <ClassesList 

@@ -5,7 +5,7 @@
 .ClassesList-title {
   width: 100%;
   height: 56px;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(250, 250, 250);
 }
 .ClassesList-title div {
   width: 33%;
@@ -23,7 +23,7 @@
 .ClassesList-item {
   width: 100%;
   height: 56px;
-  border-bottom: 2px solid rgb(250, 250, 250);
+  border-bottom: 1px solid rgb(245, 245, 245);
 }
 .ClassesList-item div {
   width: 33%;
@@ -31,4 +31,23 @@
 }
 .ClassesList-pagination {
   height: 40px;
+}
+
+/*--- Animation ---*/
+@keyframes mouse_enter {
+  from {
+    background-color: rgba(255, 255, 255);
+  }
+  to {
+    background-color: rgb(250, 250, 250);
+  }
+}
+
+@keyframes mouse_leave {
+  from {
+    background-color: rgb(250, 250, 250);
+  }
+  to {
+    background-color: rgba(255, 255, 255);
+  }
 }
