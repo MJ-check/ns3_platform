@@ -4,7 +4,6 @@ import "./index.css";
 import "../../App.css";
 const MAX_ITEM_NUMBER = 8;  //每页最多项目数
 
-
 /**
  * @description 用于展示课堂信息的组件
  * @param {Array} classData 存储课堂信息的数组 

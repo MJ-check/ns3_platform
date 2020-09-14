@@ -19,7 +19,7 @@ const AllClasses = () => {
   useEffect(() => {
     //需要接入查询课堂的API
     setClassData(ClassInfo.slice(0, MAX_ITEM_NUMBER));
-    setSumOfClasses(10);
+    setSumOfClasses(ClassInfo.length);
   }, []);
 
   /**
@@ -39,7 +39,7 @@ const AllClasses = () => {
     //接入课堂列表API
     console.log("页面切换" + page);
     if (page === 2) 
-      setClassData(ClassInfo.slice(MAX_ITEM_NUMBER, 10));
+      setClassData(ClassInfo.slice(MAX_ITEM_NUMBER, ClassInfo.length));
     else
       setClassData(ClassInfo.slice(0, MAX_ITEM_NUMBER));
   };
@@ -72,8 +72,8 @@ const AllClasses = () => {
                 课堂详情
               </Button>
               <Button 
-                type="link"
                 className="AC-list-button"
+                type="link"
               >
                 加入课堂
               </Button>
